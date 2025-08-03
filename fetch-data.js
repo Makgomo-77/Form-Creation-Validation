@@ -4,7 +4,7 @@ async function fetchUserData() {
     const userList = document.getElementById('userList');
     try{
         //fetch  the data
-        const fetch = document.getelementById('api-data');
+        const dataContainer = document.getelementById('api-data');
         const response = await fetch('apiUrl');
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -23,4 +23,5 @@ async function fetchUserData() {
 }
 
     document.addEventListener('DOMContentLoaded', fetchUserData);
+
 
