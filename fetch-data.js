@@ -12,8 +12,10 @@ async function fetchUserData() {
         //convert to JSON
         const users = await response.json();
         statusDiv.textContent = 'Loading user data..';
-        //update the UI with the fetched data
-        dataContainer.innerHTML = data.map(user => `<li>${user.name}</li>`).join('');
+        users.foreach(user=> {const ul = document.createElement('ul');
+                              datacontainer.innerHTML =`<strong>${user.name}</strong> <br>
+                              <span class="email">${user.email}</span>`;
+                              userList.appendChild(ul)
     } catch (error) {
         console.error('Error fetching user data:', error);
         statusDiv.textContent = 'Failed to load user data.';
@@ -21,3 +23,4 @@ async function fetchUserData() {
 }
 
     document.addEventListener('DOMContentLoaded', fetchUserData);
+
