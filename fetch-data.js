@@ -13,7 +13,7 @@ async function fetchUserData() {
         const users = await response.json();
         statusDiv.textContent = 'Loading user data..';
         users.foreach(user=> {const ul = document.createElement('ul');
-                              datacontainer.innerHTML =`<strong>${user.name}</strong> <br>
+                              datacontainer.innerHTM =`<strong>${user.name}</strong> <br>
                               <span class="email">${user.email}</span>`;
                               userList.appendChild(ul)
     } catch (error) {
