@@ -3,7 +3,8 @@ async function fetchUserData() {
     const statusDiv = document.getElementById('status');
     const userList = document.getElementById('userList');
     try{
-        //fetch  the data 
+        //fetch  the data
+        const fetch = document.getelementById('api-data');
         const response = await fetch('apiUrl');
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -18,4 +19,5 @@ async function fetchUserData() {
         statusDiv.textContent = 'Failed to load user data.';
     }
 }
+
     document.addEventListener('DOMContentLoaded', fetchUserData);
