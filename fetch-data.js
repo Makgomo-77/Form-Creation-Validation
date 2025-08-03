@@ -24,10 +24,14 @@ async function fetchUserData() {
             
     } function (showError) {
         dataContainer.innerHTML = 'Failed to load user data.';
+    }catch (error){
+        statusDiv.textContent = 'Failed to load user data.';
+        cosole.error('Error fetching user data:'error);
     }
 }
 
     document.addEventListener('DOMContentLoaded', fetchUserData);
+
 
 
 
