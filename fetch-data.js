@@ -11,17 +11,23 @@ async function fetchUserData() {
         }
         //convert to JSON
         const users = await response.json();
-        statusDiv.textContent = 'Loading user data..';
-        users.foreach(user=> {const ul = document.createElement('ul');
-                              datacontainer.innerHTM =`<strong>${user.name}</strong> <br>
-                              <span class="email">${user.email}</span>`;
-                              userList.appendChild(ul)
-    } catch (error) {
-        console.error('Error fetching user data:', error);
-        statusDiv.textContent = 'Failed to load user data.';
+        statusDiv.textContent = '';
+        function displayUsers(users) {
+            const userList = document.createElement('ul');
+            users.foreach(user =>{
+                const li = document.createElement('li');
+                li.textcontent = user.name;
+                userList.appendChild(li);
+            });
+                datacontainer.appendChild(userList);
+            }
+            
+    } function (showError) {
+        dataContainer.innerHTML = 'Failed to load user data.';
     }
 }
 
     document.addEventListener('DOMContentLoaded', fetchUserData);
+
 
 
