@@ -4,7 +4,7 @@ async function fetchUserData() {
     const userList = document.getElementById('userList');
     try{
         //fetch  the data 
-        const response = await fetch(apiUrl);
+        const response = await fetch('apiUrl');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
