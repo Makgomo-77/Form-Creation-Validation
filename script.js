@@ -1,49 +1,52 @@
+
 document.addEventListener('DOMContentLoaded', function() {
-    const form =
-        document.getElementById('registration-form');
-    const username = document.getElementById('username');
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
+    // Select the form and feedback div
+    const form = document.getElementById('registration-form');
     const feedbackDiv = document.getElementById('form-feedback');
+
+    // Form submission handler
     form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
-        let isValid = true; // Flag to track form validity
-        feedback.style.display = 'none'; // Hide feedback initially
+        // Prevent form submission
+        event.preventDefault();
 
-        // Clear previous error messages
-        username.classList.remove('error');
-        email.classList.remove('error');
-        password.classList.remove('error');
+        // Get and trim input values
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
 
-        let messages =[]
-        if (username.value.trim().length<3){
-            mesages.push("Username must be at least 3 characters long.");
-        }
+        // Validation variables
+        let isValid = true;
+        const messages = [];
 
-        // Validate email
-        if (!email.value.includes('@')|| !email.value.includes('.')) {
-            messages.push("please enter a valid email address.");
-        }
-
-        // Validate password
-        if (password.value.length < 8) {
-            messages.push("password must be at least 8 characters long.");
+        // Validate username (minimum 3 characters)
+        if (username.length < 3) {
             isValid = false;
+            messages.push('Username must be at least 3 characters long');
         }
 
-        if (messages.length>0) {
-            feedback.style.display = 'block';
-            feedbackDiv.innerHTML = messsages.join('<br>');
-        }else{
-            feedbackDiv.textContent = 'Registration successful!';
-            feedbackDiv.style.display = 'block';
-            feedbackDiv.style.backgroundColor = '#28a745'; // Green background for success
+        // Validate email (must contain @ and .)
+        if (!email.includes('@') || !email.includes('.')) {
+            isValid = false;
+            messages.push('Please enter a valid email address');
+        }
+
+        // Validate password (minimum 8 characters)
+        if (password.length < 8) {
+            isValid = false;
+            messages.push('Password must be at least 8 characters long');
+        }
+
+        // Display feedback
+        feedbackDiv.style.display = "block";
+        
+        if (isValid) {
+            feedbackDiv.textContent = "Registration successful!";
+            feedbackDiv.style.color = "#28a745";
+            // Here you could add code to actually submit the form if validation passes
+            // form.submit();
         } else {
-            feedbackDiv.textContent = 'Please correct the errors in the form.';
-            feedbackDiv.style.display = 'block';
-            feedbackDiv.style.backgroundColor = '#dc3545'; // Red background for error
+            feedbackDiv.innerHTML = messages.join('<br>');
+            feedbackDiv.style.color = "#dc3545";
         }
     });
 });
-
-
